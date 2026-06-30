@@ -1,33 +1,35 @@
-
-'use client';
-
+// src/components/chat/MessageList.tsx
 import MessageBubble from './MessageBubble';
 
 interface Message {
+  id: string;
   text: string;
-  sender: 'user' | 'bot';
+  isUser: boolean;
+  timestamp: string;
 }
 
 interface MessageListProps {
   messages: Message[];
-  loading?: boolean;
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages, loading }) => {
+export default function MessageList({ messages }: MessageListProps) {
   return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
-      {messages.map((msg, idx) => (
-        <MessageBubble key={idx} message={msg} />
-      ))}
-      {loading && (
-        <div className="flex justify-start">
-          <div className="bg-gray-200 rounded-lg px-4 py-2">
-            <span className="animate-pulse">●●●</span>
-          </div>
+    <div className="flex-1 overflow-y-auto p-4 space-y-2">
+      {messages.length === 0 ? (
+        <div className="text-center text-gray-400 mt-20">
+          <p>Start your conversation!</p>
+          <p className="text-sm">Choose an option below to begin</p>
         </div>
+      ) : (
+        messages.map((msg) => (
+          <MessageBubble
+            key={msg.id}
+            message={msg.text}
+            isUser={msg.isUser}
+            timestamp={msg.timestamp}
+          />
+        ))
       )}
     </div>
   );
-};
-
-export default MessageList;
+}

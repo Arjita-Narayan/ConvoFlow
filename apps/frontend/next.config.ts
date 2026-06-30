@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
-  output: 'export', // This creates a static 'out' folder
+  output: 'export',
   images: {
-    unoptimized: true, // Required for static export
+    unoptimized: true,
   },
-  trailingSlash: true, // Helps with GitHub Pages routing
-  basePath: '/ConvoFlow', // Your repository name
-  assetPrefix: '/ConvoFlow/',
+  trailingSlash: true,
+  // Only use basePath in production (GitHub Pages)
+  basePath: isProduction ? '/ConvoFlow' : '',
+  assetPrefix: isProduction ? '/ConvoFlow/' : '',
 };
 
 export default nextConfig;

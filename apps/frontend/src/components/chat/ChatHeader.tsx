@@ -1,27 +1,19 @@
+import { ArrowLeft } from "lucide-react"
+export default function ChatHeader(){
 
-'use client';
+  return(
 
-interface ChatHeaderProps {
-  onClose?: () => void;
-}
-
-const ChatHeader: React.FC<ChatHeaderProps> = ({ onClose }) => {
-  return (
-    <div className="p-4 border-b bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-xl flex justify-between items-center">
-      <div>
-        <h2 className="text-white font-semibold text-lg">💬 Chat Assistance</h2>
-        <p className="text-blue-100 text-sm">How can I help you today?</p>
+    <>
+    <div className="flex flex-row gap-4 bg-emerald-100 w-full p-4 items-center" >
+      <ArrowLeft className="text-emerald-800 font-bold"/>
+      <div className="flex flex-col">
+<h1 className="text-emerald-800 font-bold text-2xl ">Chat Assistance</h1>
+<p className="text-emerald-800">Welcome to convoFlow Assistance...</p>
       </div>
-      {onClose && (
-        <button 
-          onClick={onClose}
-          className="text-white hover:text-gray-200 transition"
-        >
-          ✕
-        </button>
-      )}
-    </div>
-  );
-};
 
-export default ChatHeader;
+    </div>
+    
+    </>
+  )
+
+}

@@ -1,30 +1,29 @@
-
-'use client';
-
+// src/components/chat/OptionButtons.tsx
 interface OptionButtonsProps {
-  onOptionClick: (option: string) => void;
+  options: string[];
+  onOptionSelect: (option: string) => void;
   disabled?: boolean;
 }
 
-const OptionButtons: React.FC<OptionButtonsProps> = ({ onOptionClick, disabled }) => {
-  const options = ['Product Info', 'Get Support', 'Pricing'];
-  
+export default function OptionButtons({ options, onOptionSelect, disabled = false }: OptionButtonsProps) {
   return (
-    <div className="p-4 border-t bg-gray-50">
-      <div className="flex gap-2">
-        {options.map((opt) => (
-          <button
-            key={opt}
-            onClick={() => onOptionClick(opt)}
-            disabled={disabled}
-            className="flex-1 px-4 py-2 bg-white hover:bg-blue-50 border-2 border-blue-200 rounded-lg transition disabled:opacity-50 text-sm font-medium"
-          >
-            {opt}
-          </button>
-        ))}
-      </div>
+    <div className="flex flex-wrap gap-2 mt-2 justify-center">
+      {options.map((option, index) => (
+        <button
+          key={index}
+          onClick={() => onOptionSelect(option)}
+          disabled={disabled}
+          className={`
+            px-4 py-2 rounded-full text-sm font-medium transition-all
+            ${disabled 
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+              : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200 hover:scale-105 active:scale-95'
+            }
+          `}
+        >
+          {option}
+        </button>
+      ))}
     </div>
   );
-};
-
-export default OptionButtons;
+}
