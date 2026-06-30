@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import ChatHeader from './ChatHeader';
 import { useGuidedChat } from '@/src/hooks/useGuidedChat';
 
+
 export default function ChatContainer() {
   const {
     messages,
